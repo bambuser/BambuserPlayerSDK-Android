@@ -8,21 +8,19 @@
   <br/><br />
 </div>
 
-# Bambuser Live Video Shopping Player (Beta)
+# Bambuser Live Video Shopping Player
 
 
 ## About
 
-`BambuserLiveVideoShoppingPlayer` lets you add a Bambuser Live Video Shopping (LVS) Player to your app.
+The `BambuserPlayerSDK-Android` is a library that lets you watch live and recorded shows hosted by Bambuser within your Android application. 
 
-The LVS player can be used to watch live and recorded shows, with UI overlays that let users interact with the show.
+It can be significantly configured and lets you listen for player-emitted events and perform player-specific functions.
 
-The LVS player can be configured to a great extent and also lets you listen for player-emitted events and perform player-specific functions.
-
-`BambuserLiveVideoShoppingPlayer` supports Android 8+ (API 26).
+## Requirements
+This library targets Android 34, and the minimal support API is 26 (Android 8+)
 
 ## Installation
-
 First, add a new maven repository to your dependency resolution management:
 
 ```
@@ -32,11 +30,11 @@ repositories {
         // other repositories you might have...
         
         maven {
-            url = uri("https://repo.repsy.io/mvn/bambuser/default")
+            url "https://repo.repsy.io/mvn/bambuser/default"
         }
     }
 ```
-Then add the LVS Player SDK into your `app/build.gradle`:
+Then add the dependency into your `app/build.gradle`:
 
 ```
 implementation "com.bambuser:player-sdk:${LATEST_RELEASE_VERSION}"
@@ -50,8 +48,8 @@ An LVS Player is a dedicated Android Activity that can be initialized by the fol
 LVSPlayer.startActivity(
     context = Context // A context from Android,
 	showId = The ID of the show to watch,  
-	configuration = Configuration(...), // Optional value to adjust the player  
-	eventObserver = EventObserver(...), // Optional value to listen to events from the player  
+	configuration = Configuration(...), // Configuration that enable/disable features and UI elements in the player  
+	eventObserver = EventObserver(...), // Optional interface that receives the player events   
 )
 ```
 
