@@ -30,7 +30,9 @@ repositories {
 ```
 Then add the LVS Player SDK into your `app/build.gradle`:
 
-`implementation "com.bambuser:player-sdk:${LATEST_RELEASE_VERSION}"`
+```
+implementation "com.bambuser:player-sdk:${LATEST_RELEASE_VERSION}"
+```
 
 ## Getting started
 
