@@ -1,4 +1,14 @@
-# Bambuser Live Video Shopping Player
+<div>
+  <br/><br />
+  <p align="center">
+    <a href="https://bambuser.com" target="_blank" align="center">
+        <img src="https://brand.bambuser.net/current/logo/bambuser-black-512.png" width="280">
+    </a>
+  </p>
+  <br/><br />
+</div>
+
+# Bambuser Live Video Shopping Player (Beta)
 
 
 ## About
