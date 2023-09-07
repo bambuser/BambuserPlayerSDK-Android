@@ -42,20 +42,20 @@ implementation "com.bambuser:player-sdk:${LATEST_RELEASE_VERSION}"
 
 ## Getting started
 
-An LVS Player is a dedicated Android Activity that can be initialized by the following way:
+An LVS player is a dedicated Android Activity that can be initialized in the following way:
 
 ```  
 LVSPlayer.startActivity(
     context = Context // A context from Android,
 	showId = The ID of the show to watch,  
-	configuration = Configuration(...), // Configuration that enable/disable features and UI elements in the player  
+	configuration = Configuration(...), // Configuration that enable/disable features and UI elements in the player  by
 	eventObserver = EventObserver(...), // Optional interface that receives the player events   
 )
 ```
 
 ### Configuration
 
-Several player attributes can be configured by providing a `Configuration` when the `LVSPlayer` is created.
+The player's attributes can be configured by providing a `Configuration` when the `LVSPlayer` is created.
 The supported properties are:
 
 | Property                   | Type      | functionality                                                                                                                                                                        |
@@ -86,14 +86,14 @@ If an `EventObserver` is provided when the `LVSPlayer` is created, the following
 | `OnMessageSent`                   | A chat message is sent through the player                                                                                              | -                                                                                                                                                   |
 | `OnTermsAndConditionsLinkClicked` | The user clicks on the link to view the terms and conditions for the chat                                                              | `link: String` - The link that was clicked                                                                                                          |
 | `OnChatMessageLinkClicked`        | The user clicks on a link in a chat message                                                                                            | `link: String` - The link that was clicked                                                                                                          |
-| `OnSendLike`                      | The user sends a like using the heart-button, multiple likes within a short time span will be lumped together into the same event      | `count: Int` - The amount of likes that was sent                                                                                                    |
+| `OnSendLike`                      | The user sends a like using the heart button, multiple likes within a short time span will be lumped together into the same event      | `count: Int` - The amount of likes that were sent                                                                                                    |
 | `OnMessageReceived`               | A new message was received from the backend                                                                                            | -                                                                                                                                                   |
 | `OnMinimizeClicked`               | The user clicks on the minimize button. This will make the player enter PiP mode if it is enabled. Otherwise, the player will be closed | -                                                                                                                                                   |
 | `PDPEvent.OnOpenClicked`          | The user clicks on the open button inside of the light PDP                                                                             | `productId: String` - The id of the product to be opened                                                                                            |
 | `OnError`                         | The player encounters an error                                                                                                         | `lvsPlayerError: LVSPlayerError` - The error that occurred                                                                                          |
 | `OnClose`                         | The player was closed                                                                                                                  | -                                                                                                                                                   |
 
-> Currently, whenever an `OnError` event is emitted, the `LVSPlayer` activity is destroyed. This behavior will be improved in a future release. 
+> Currently, whenever an `OnError` event is emitted, the `LVSPlayer` activity is destroyed. This behavior is likely going to change in future releases. 
 
 
 ## Demo app
