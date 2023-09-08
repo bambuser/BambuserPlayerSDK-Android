@@ -10,7 +10,6 @@
 
 # Bambuser Live Video Shopping Player
 
-
 ## About
 
 The `BambuserPlayerSDK-Android` is a library that lets you watch live and recorded shows hosted by Bambuser within your Android application. 
@@ -95,6 +94,24 @@ If an `EventObserver` is provided when the `LVSPlayer` is created, the following
 
 > Currently, whenever an `OnError` event is emitted, the `LVSPlayer` activity is destroyed. This behavior is likely going to change in future releases. 
 
+
+## Work Manager
+If you make usage of custom worker factories in your Android application, you might find issues after initializing the `LVSPlayer`. If that is your case, merge your factories with ours `LVSWorkerFactory` where you provide its configuration with the help of the `DelegatingWorkerFactory`:
+
+```
+val factory = DelegatingWorkerFactory()
+	.apply {
+            addFactory(yourCustomFactory) // Add your factories
+            addFactory(LVSWorkerFactory()) // This is our own worker factory
+        }
+
+val conf = Configuration.Builder()
+	.setWorkerFactory(factory)
+	// Other configurations you might have...
+        .build()
+
+WorkManager.initialize(yourContext, conf)
+```
 
 ## Demo app
 
