@@ -12,7 +12,7 @@
 
 ## About
 
-The `BambuserPlayerSDK-Android` is a library that lets you watch live and recorded shows hosted by Bambuser within your Android application. 
+This project contains a sample Android application showcasing the usage of Bambuser's Player SDK.
 
 It can be significantly configured and lets you listen for player-emitted events and perform player-specific functions.
 
