@@ -96,7 +96,7 @@ If an `EventObserver` is provided when the `LVSPlayer` is created, the following
 
 
 ## Work Manager
-If you make usage of custom worker factories in your Android application, you might find issues after initializing the `LVSPlayer`. If that is your case, merge your factories with ours `LVSWorkerFactory` where you provide its configuration with the help of the `DelegatingWorkerFactory`:
+You might find issues when using custom worker factories in your Android application after initializing the `LVSPlayer`. If that is your case, merge your factories with our `LVSWorkerFactory` with the help of the `DelegatingWorkerFactory`. See the example below:
 
 ```
 val factory = DelegatingWorkerFactory()
