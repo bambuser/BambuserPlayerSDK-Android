@@ -1,4 +1,4 @@
-package com.example.player.theme
+package com.bambuser.liveshopping.player.theme
 
 import androidx.compose.ui.graphics.Color
 

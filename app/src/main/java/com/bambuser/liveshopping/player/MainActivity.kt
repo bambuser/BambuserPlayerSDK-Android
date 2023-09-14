@@ -4,7 +4,7 @@
  * Last modified 8/24/23, 2:03 PM
  */
 
-package com.android.lvssdkplayerdemo
+package com.bambuser.liveshopping.player
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -19,8 +19,8 @@ import com.bambuser.player.LVSPlayer
 import com.bambuser.player.LVSPlayerError
 import com.bambuser.player.observer.EventObserver
 import com.bambuser.player.observer.LVSPlayerEvent
-import com.example.player.theme.MyApplicationTheme
-import com.example.player.ui.ConfigurationScreen
+import com.bambuser.liveshopping.player.theme.MyApplicationTheme
+import com.bambuser.liveshopping.player.ui.ConfigurationScreen
 
 // Example of a LVS player configuration
 val defaultConfiguration = Configuration(

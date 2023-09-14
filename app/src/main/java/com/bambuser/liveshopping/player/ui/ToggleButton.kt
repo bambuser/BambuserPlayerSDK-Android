@@ -4,7 +4,7 @@
  * Last modified 5/11/23, 3:23 PM
  */
 
-package com.example.player.ui
+package com.bambuser.liveshopping.player.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

@@ -13,9 +13,8 @@
         android:theme="@style/Theme.LVSSDKPlayerDemo"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.bambuser.liveshopping.player.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.LVSSDKPlayerDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

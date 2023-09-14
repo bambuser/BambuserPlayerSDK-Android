@@ -4,7 +4,7 @@
  * Last modified 8/24/23, 2:11 PM
  */
 
-package com.example.player.ui
+package com.bambuser.liveshopping.player.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,7 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.android.lvssdkplayerdemo.defaultConfiguration
+import com.bambuser.liveshopping.player.defaultConfiguration
 
 @Composable
 fun ConfigurationScreen(

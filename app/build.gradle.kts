@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.android.lvssdkplayerdemo"
+    namespace = "com.bambuser.liveshopping.player"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.android.lvssdkplayerdemo"
+        applicationId = "com.bambuser.liveshopping.player"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -53,6 +53,6 @@ dependencies {
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation("androidx.compose.material3:material3")
     implementation("androidx.activity:activity-compose:1.7.2")
-    implementation("com.bambuser:player-sdk:1.0.0")
+    implementation("com.bambuser:player-sdk:1.0.1")
 
 }
