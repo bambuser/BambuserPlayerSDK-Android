@@ -36,7 +36,7 @@ repositories {
 Then add the dependency into your `app/build.gradle`:
 
 ```
-implementation "com.bambuser:player-sdk:${LATEST_RELEASE_VERSION}"
+implementation "com.bambuser:player-sdk:(insert the latest version)"
 ```
 
 ## Getting started
