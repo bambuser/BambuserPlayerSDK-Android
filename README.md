@@ -45,10 +45,10 @@ An LVS player is a dedicated Android Activity that can be initialized in the fol
 
 ```  
 LVSPlayer.startActivity(
-    context = Context // A context from Android,
-	showId = The ID of the show to watch,  
-	configuration = Configuration(...), // Configuration that enable/disable features and UI elements in the player
-	eventObserver = EventObserver(...), // Optional interface that receives the player events   
+    context = Your Android context,
+    showId = The ID of the show to watch,  
+    configuration = Configuration(...), // Configuration that enable/disable features and UI elements in the player
+    eventObserver = EventObserver(...), // Optional interface that receives the player events   
 )
 ```
 
