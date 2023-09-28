@@ -22,45 +22,14 @@ import com.bambuser.player.observer.LVSPlayerEvent
 import com.bambuser.liveshopping.player.theme.MyApplicationTheme
 import com.bambuser.liveshopping.player.ui.ConfigurationScreen
 
-// Example of a LVS player configuration
-val defaultConfiguration = Configuration(
-    isEUServer = false,
-    showHighlightedProducts = true,
-    showChat = true,
-    showProductsOnEndCurtain = true,
-    enablePictureInPicture = true,
-    enableProductDetailsPage = true,
-    showShoppingCart = true,
-    showLikes = true
-)
-
-class MainActivity : ComponentActivity(), EventObserver {
+class MainActivity : ComponentActivity() {
 
     companion object {
         const val TAG = "MainActivity"
     }
 
     private var isDialogVisible = false
-
-    override fun onResume() {
-        super.onResume()
-        if (!isDialogVisible) {
-            ErrorHolder.error?.let {
-                isDialogVisible = true
-                AlertDialog.Builder(this)
-                    .setTitle("Something went wrong")
-                    .setMessage("The player threw the following error: ${it.message}")
-                    .setCancelable(false)
-                    .setPositiveButton("Ok") { dialog, _ ->
-                        dialog.dismiss()
-                        ErrorHolder.error = null
-                        isDialogVisible = false
-                    }
-                    .create()
-                    .show()
-            }
-        }
-    }
+    private val eventObserver = EventObserverExample
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,7 +63,7 @@ class MainActivity : ComponentActivity(), EventObserver {
                         onShowLikesUpdated = { showLikes.value = it },
                         enableStartPlayerButton = showId.value.isNotBlank()
                     ) {
-                        ErrorHolder.error = null
+                        EventObserverExample.error = null
 
                         Configuration(
                             isEUServer = isEUServer.value,
@@ -110,7 +79,7 @@ class MainActivity : ComponentActivity(), EventObserver {
                                 context = this,
                                 showId = showId.value,
                                 configuration = it,
-                                eventObserver = this
+                                eventObserver = eventObserver
                             )
                         }
                     }
@@ -119,16 +88,50 @@ class MainActivity : ComponentActivity(), EventObserver {
         }
     }
 
-    // Callback for events received from the LVS Player
-    override fun onEvent(lvsPlayerEvent: LVSPlayerEvent) {
-        Log.d(TAG, "events: $lvsPlayerEvent")
-        if (lvsPlayerEvent is LVSPlayerEvent.OnError) {
-            ErrorHolder.error = lvsPlayerEvent.lvsPlayerError
+    override fun onResume() {
+        super.onResume()
+        if (!isDialogVisible) {
+            EventObserverExample.error?.let {
+                isDialogVisible = true
+                AlertDialog.Builder(this)
+                    .setTitle("Something went wrong")
+                    .setMessage("The player threw the following error: ${it.message}")
+                    .setCancelable(false)
+                    .setPositiveButton("Ok") { dialog, _ ->
+                        dialog.dismiss()
+                        EventObserverExample.error = null
+                        isDialogVisible = false
+                    }
+                    .create()
+                    .show()
+            }
         }
     }
 }
 
-// Holder used to display the last received LVS player error
-object ErrorHolder {
+// Example of a LVS player configuration
+val defaultConfiguration = Configuration(
+    isEUServer = false,
+    showHighlightedProducts = true,
+    showChat = true,
+    showProductsOnEndCurtain = true,
+    enablePictureInPicture = true,
+    enableProductDetailsPage = true,
+    showShoppingCart = true,
+    showLikes = true
+)
+
+/**
+ * This is an example of how you can intercept events from the LVS Player SDK.
+ * Here, we have an object that overrides the EventObserver interface and stores the latest emitted
+ * error.
+ */
+object EventObserverExample : EventObserver {
     var error: LVSPlayerError? = null
+    override fun onEvent(lvsPlayerEvent: LVSPlayerEvent) {
+        Log.d(MainActivity.TAG, "events: $lvsPlayerEvent")
+        if (lvsPlayerEvent is LVSPlayerEvent.OnError) {
+            error = lvsPlayerEvent.lvsPlayerError
+        }
+    }
 }
