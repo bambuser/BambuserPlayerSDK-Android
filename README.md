@@ -16,6 +16,16 @@ This project contains a sample Android application showcasing the usage of Bambu
 
 It can be significantly configured and lets you listen for player-emitted events and perform player-specific functions.
 
+## How it looks
+These are a few screenshots of the Player SDK in action.
+
+<div>
+	<img src="images/pending-curtain.png" width="256"/>
+	<img src="images/withframe.png" width="256"/>
+	<img src="images/end-curtain.png" width="256"/>
+	<img src="images/tablet-landscape.png" width="512"/>
+</div>
+
 ## Requirements
 This library targets Android 34, and the minimal support API is 26 (Android 8+)
 
