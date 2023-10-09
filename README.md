@@ -54,7 +54,7 @@ LVSPlayer.startActivity(
 
 ### Configuration
 
-The player's attributes can be configured by providing a `Configuration` when the `LVSPlayer` is created.
+The player's attributes can be configured by providing a `Configuration` object when the `LVSPlayer` is created.
 The supported properties are:
 
 | Property                   | Type      | Functionality                                                                                                                                                                         |
