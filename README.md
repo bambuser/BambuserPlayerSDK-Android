@@ -19,7 +19,7 @@ It can be significantly configured and lets you listen for player-emitted events
 ## Requirements
 This library targets Android 34, and the minimal support API is 26 (Android 8+)
 
-## Installation
+## Setup
 First, add a new maven repository to your dependency resolution management:
 
 ```
