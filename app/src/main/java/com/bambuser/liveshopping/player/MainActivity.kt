@@ -1,7 +1,7 @@
 /*
  * Created by Bambuser.
  * Copyright (c) 2023. All rights reserved.
- * Last modified 8/24/23, 2:03 PM
+ * Last modified 9/29/23, 11:27 AM
  */
 
 package com.bambuser.liveshopping.player
@@ -14,13 +14,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.bambuser.liveshopping.player.theme.MyApplicationTheme
+import com.bambuser.liveshopping.player.ui.ConfigurationScreen
 import com.bambuser.player.Configuration
 import com.bambuser.player.LVSPlayer
 import com.bambuser.player.LVSPlayerError
-import com.bambuser.player.observer.EventObserver
-import com.bambuser.player.observer.LVSPlayerEvent
-import com.bambuser.liveshopping.player.theme.MyApplicationTheme
-import com.bambuser.liveshopping.player.ui.ConfigurationScreen
+import com.bambuser.player.io.EventObserver
+import com.bambuser.player.io.LVSPlayerEvent
 
 class MainActivity : ComponentActivity() {
 
@@ -50,6 +50,11 @@ class MainActivity : ComponentActivity() {
                     val showCart =
                         remember { mutableStateOf(defaultConfiguration.showShoppingCart) }
                     val showLikes = remember { mutableStateOf(defaultConfiguration.showLikes) }
+                    val preferredLocale =
+                        remember { mutableStateOf(defaultConfiguration.preferredLocale) }
+                    val showNumberOfViewers =
+                        remember { mutableStateOf(defaultConfiguration.showNumberOfViewers) }
+                    val playerId = remember { mutableStateOf<String?>(null) }
 
                     ConfigurationScreen(
                         onShowIdUpdated = { showId.value = it },
@@ -61,7 +66,11 @@ class MainActivity : ComponentActivity() {
                         onEnablePDPUpdated = { enablePDP.value = it },
                         onShowCartUpdated = { showCart.value = it },
                         onShowLikesUpdated = { showLikes.value = it },
-                        enableStartPlayerButton = showId.value.isNotBlank()
+                        onPreferredLocaleUpdated = { preferredLocale.value = it },
+                        onShowNumberOfViewersUpdated = { showNumberOfViewers.value = it },
+                        enableStartPlayerButton = showId.value.isNotBlank(),
+                        playerId = playerId.value,
+                        isEUServer = isEUServer.value,
                     ) {
                         EventObserverExample.error = null
 
@@ -73,13 +82,17 @@ class MainActivity : ComponentActivity() {
                             enablePictureInPicture = enablePiP.value,
                             enableProductDetailsPage = enablePDP.value,
                             showShoppingCart = showCart.value,
-                            showLikes = showLikes.value
+                            showLikes = showLikes.value,
+                            preferredLocale = preferredLocale.value,
+                            showNumberOfViewers = showNumberOfViewers.value,
+                            conversionTrackingTTLDays = 1,
                         ).also {
-                            LVSPlayer.startActivity(
+                            playerId.value = LVSPlayer.startActivity(
                                 context = this,
                                 showId = showId.value,
                                 configuration = it,
-                                eventObserver = eventObserver
+                                eventObserver = eventObserver,
+                                // Provide your own player id here if you wish, otherwise one will be generated upon starting the activity
                             )
                         }
                     }
@@ -118,13 +131,19 @@ val defaultConfiguration = Configuration(
     enablePictureInPicture = true,
     enableProductDetailsPage = true,
     showShoppingCart = true,
-    showLikes = true
+    showLikes = true,
+    preferredLocale = "en-US",
+    showNumberOfViewers = true,
 )
 
 /**
  * This is an example of how you can intercept events from the LVS Player SDK.
  * Here, we have an object that overrides the EventObserver interface and stores the latest emitted
  * error.
+ *
+ * An alternative way to intercept the events is to listen directly to an events-flow from the LVS Player.
+ * It can be reached in the following way:
+ * val lvsPlayerEventsFlow = LVSPlayer.observeEvents(playerId)
  */
 object EventObserverExample : EventObserver {
     var error: LVSPlayerError? = null
