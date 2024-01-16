@@ -22,22 +22,28 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ConfigurationTextField(onShowIdUpdated: (String) -> Unit, defaultValue: String) {
+fun ConfigurationTextField(
+    onValueUpdated: (String) -> Unit,
+    defaultValue: String,
+    label: String,
+    placeholderHelperText: String,
+    errorOnEmpty: Boolean
+) {
     val focusManager = LocalFocusManager.current
-    val rememberShowId = remember { mutableStateOf(defaultValue) }
+    val rememberTypedValue = remember { mutableStateOf(defaultValue) }
 
     OutlinedTextField(
-        value = rememberShowId.value,
+        value = rememberTypedValue.value,
         onValueChange = {
-            rememberShowId.value = it
-            onShowIdUpdated(it)
+            rememberTypedValue.value = it
+            onValueUpdated(it)
         },
-        placeholder = { Text(text = "Put your show id in this field") },
-        isError = rememberShowId.value.isBlank(),
+        placeholder = { Text(text = placeholderHelperText) },
+        isError = rememberTypedValue.value.isBlank(),
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth(),
-        label = { Text(text = "SHOW ID") },
+        label = { Text(text = label) },
         singleLine = true,
         keyboardActions = KeyboardActions(
             onDone = { focusManager.clearFocus() }
@@ -46,7 +52,7 @@ fun ConfigurationTextField(onShowIdUpdated: (String) -> Unit, defaultValue: Stri
             imeAction = ImeAction.Done
         ),
         supportingText = {
-            if (rememberShowId.value.isBlank()) {
+            if (errorOnEmpty && rememberTypedValue.value.isBlank()) {
                 Text(
                     text = "This field cannot be blank",
                     modifier = Modifier.fillMaxWidth(),
