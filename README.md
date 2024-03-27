@@ -178,3 +178,7 @@ WorkManager.initialize(yourContext, conf)
 ## Demo app
 
 The `app` folder contains a demo app, which can be used as an example of how to set up and configure an `LVSPlayer`.
+
+## Known Issues
+- Closing PiP does not stop the player instance, and the audio keeps playing until you close the app. Bambuser would recommend to not use PiP until this issue is resolved
+- App crashes intermittently when using the seek bar and closes the player, with an IllegalStateException related to MediaPlayer.getCurrentPosition ([Issue](https://github.com/bambuser/BambuserPlayerSDK-Android/issues/10))
