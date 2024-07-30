@@ -30,6 +30,7 @@ These are a few screenshots of the Player SDK in action.
 ## Requirements
 
 This library targets Android 34, and the minimal support API is 26 (Android 8+)
+We are using firebase-bom version 32.7.1
 
 ## Setup
 
