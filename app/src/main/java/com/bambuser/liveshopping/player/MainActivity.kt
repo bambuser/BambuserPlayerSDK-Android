@@ -94,6 +94,26 @@ class MainActivity : ComponentActivity() {
                                 eventObserver = eventObserver,
                                 // Provide your own player id here if you wish, otherwise one will be generated upon starting the activity
                             )
+                            /*
+                            CART TUTORIAL:
+
+                            First initialize the player with the products that are available in the cart.
+                            LVSPlayer.playerCartInit(
+                                ...,
+                                pass in products that are already in your cart
+                            )
+                            Make sure to observe the player events to update the cart when the player emits events.
+                            demoCartViewModel.observePlayerEvents(LVSPlayer.observeEvents(playerId.value))
+                            */
+
+                            /*
+                            In your demo cart view, you will be listening to the products from the CartViewModel,
+                            You can observe the cart sdk events there and adjust your products in the cart accordingly.
+                            Also, when you make changes in your cart, you will send events to the player to update the cart.
+                            DemoCart(state.products, viewModel::increaseQuantity, viewModel::decreaseQuantity, viewModel::removeProduct, viewModel::addProduct)
+
+                            In this example the viewModel will be sending the events, please see DemoCartViewModel.kt
+                            */
                         }
                     }
                 }
