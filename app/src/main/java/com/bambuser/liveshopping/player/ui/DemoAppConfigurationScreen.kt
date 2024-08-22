@@ -75,7 +75,7 @@ fun ConfigurationScreen(
 
                 ConfigurationTextField(
                     onValueUpdated = onShowIdUpdated,
-                    defaultValue = "",
+                    defaultValue = "vAtJH3xevpYTLnf1oHao",
                     label = "SHOW ID",
                     placeholderHelperText = "Put your show id in this field",
                     errorOnEmpty = true
