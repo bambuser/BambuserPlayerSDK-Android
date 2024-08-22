@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApplicationTheme {
                 Surface {
-                    val showId = remember { mutableStateOf("") }
+                    val showId = remember { mutableStateOf("vAtJH3xevpYTLnf1oHao") }
                     val isEUServer = remember { mutableStateOf(defaultConfiguration.isEUServer) }
                     val showHighlightedProducts =
                         remember { mutableStateOf(defaultConfiguration.showHighlightedProducts) }
