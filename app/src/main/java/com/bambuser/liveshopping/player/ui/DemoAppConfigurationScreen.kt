@@ -49,7 +49,8 @@ fun ConfigurationScreen(
     enableStartPlayerButton: Boolean,
     playerId: String?,
     isEUServer: Boolean,
-    onStartPlayer: () -> Unit
+    onStartPlayerAsCompose: () -> Unit,
+    onStartPlayer: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -143,6 +144,13 @@ fun ConfigurationScreen(
             enabled = enableStartPlayerButton
         ) {
             Text(text = "Start Player")
+        }
+
+        Button(
+            onClick = onStartPlayerAsCompose,
+            enabled = enableStartPlayerButton,
+        ) {
+            Text(text = "Start Player As Compose")
         }
 
         val context = LocalContext.current.applicationContext
